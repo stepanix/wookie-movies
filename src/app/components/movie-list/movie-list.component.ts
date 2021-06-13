@@ -5,8 +5,7 @@ import { MovieListFacade } from './facades/movie-list.facade';
 import { MovieListModel } from './models/movie-list.model';
 import { GetMovieList, SearchMovieList } from './store/actions/movie-list.actions';
 import { MovieListState } from './store/states/movie-list.state';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 import { Subscription } from 'rxjs';
 
 
@@ -17,8 +16,6 @@ import { Subscription } from 'rxjs';
 })
 export class MovieListComponent implements OnInit, OnDestroy {
 
-  faSearch = faSearch;
-  searchMovieForm: FormGroup;
 
   @Select(MovieListState.getGroupedMovieList)
   groupedMovieList$: Observable<Array<MovieListModel>> | undefined;
@@ -33,10 +30,8 @@ export class MovieListComponent implements OnInit, OnDestroy {
 
   subscription: Subscription = new Subscription();
 
-  constructor(private fb: FormBuilder, private store: Store, private movieListFacade: MovieListFacade) {
-    this.searchMovieForm = this.fb.group({
-      txtSearchInput: ['', Validators.required]
-    });
+  constructor(private store: Store, private movieListFacade: MovieListFacade) {
+
   }
 
 
@@ -52,9 +47,6 @@ export class MovieListComponent implements OnInit, OnDestroy {
     this.subscription.add(groupMovieListSubscription);
   }
 
-  searchMovie() {
-    const searchValue = this.searchMovieForm.controls['txtSearchInput'].value
-    this.store.dispatch(new SearchMovieList(searchValue));
-  }
+
 
 }

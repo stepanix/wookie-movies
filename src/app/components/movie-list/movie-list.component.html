@@ -1,23 +1,5 @@
 <div class="container-fluid">
-    <div class="row page-header">
-        <div class="col-6">
-            <h4>Wookie Movies</h4>
-        </div>
-        <div class="input-group col-6">
-            <form [formGroup]="searchMovieForm" style="width:100%">
-                <span class="input-group">
-                    <button (click)="searchMovie()" class="btn btn-outline-secondary border-right-0 border"
-                        type="button">
-                        <fa-icon [icon]="faSearch"></fa-icon>
-                    </button>
-                    <input class="form-control border" type="search" formControlName="txtSearchInput"
-                        (keyup.enter)="searchMovie()" placeholder="search">
-                </span>
-            </form>
-        </div>
-    </div>
-
-    <hr>
+    <app-page-header></app-page-header>
 
     <div *ngIf="!(isLoading$ | async) && groupedMovieList">
 
