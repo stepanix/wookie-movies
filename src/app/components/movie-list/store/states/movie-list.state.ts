@@ -1,9 +1,10 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Action, Selector, State, StateContext } from "@ngxs/store";
-import { throwError } from "rxjs/internal/observable/throwError";
-import { catchError } from "rxjs/internal/operators/catchError";
-import { tap } from "rxjs/internal/operators/tap";
+import { throwError } from "rxjs";
+import { catchError, tap } from "rxjs/operators";
+
+
 import { MovieListResponseModel } from "src/app/shared/models/movie-list-response.model";
 import { MovieModel } from "src/app/shared/models/movie.model";
 import { MovieListListFacade } from "../../facades/movie-list.facade";
