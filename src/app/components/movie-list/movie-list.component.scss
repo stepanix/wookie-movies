@@ -1,23 +1,17 @@
 .box {
-    background-color: var(--surface-e);
-    text-align: center;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    border-radius: 4px;
-    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+    margin-bottom: 16px;
+    margin-right: 12px;
 }
 
-.box-stretched {
-    height: 100%;
+.genre {
+    font-weight: 600;
+    padding-top: 16px;
+    margin-bottom: 12px;
+    font-size: large;
 }
 
-.vertical-container {
-    margin: 0;
-    height: 200px;
-    background: var(--surface-d);
-    border-radius: 4px;
+.title-ext {
+ font-weight: 450;
+ font-size: medium;
 }
 
-.nested-grid .p-col-4 {
-    padding-bottom: 1rem;
-}

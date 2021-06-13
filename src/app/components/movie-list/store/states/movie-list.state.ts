@@ -7,10 +7,10 @@ import { catchError, tap } from "rxjs/operators";
 
 import { MovieListResponseModel } from "src/app/shared/models/movie-list-response.model";
 import { MovieModel } from "src/app/shared/models/movie.model";
-import { MovieListListFacade } from "../../facades/movie-list.facade";
+import { MovieListFacade } from "../../facades/movie-list.facade";
 import { MovieListModel } from "../../models/movie-list.model";
 import { MovieListApiService } from "../../services/apis/movie-list.api.service";
-import { GetMovieList } from "../actions/movie-list.actions";
+import { GetMovieList, SearchMovieList } from "../actions/movie-list.actions";
 
 
 export interface MovieListStateModel {
@@ -34,7 +34,7 @@ export interface MovieListStateModel {
 @Injectable()
 export class MovieListState {
 
-    constructor(private movieListService: MovieListApiService, private movieListFacade: MovieListListFacade) {
+    constructor(private movieListService: MovieListApiService, private movieListFacade: MovieListFacade) {
     }
 
     @Selector()
@@ -61,6 +61,28 @@ export class MovieListState {
     getMovieList({ getState, setState }: StateContext<MovieListStateModel>) {
         const state = getState();
         return this.movieListService.get().pipe(
+            tap((response: MovieListResponseModel) => {
+                setState({
+                    ...state,
+                    movieList: response.movies,
+                    groupedMovieList: this.movieListFacade.transform(response.movies),
+                    isLoading: false
+                });
+            }),
+            catchError((err: HttpErrorResponse) => {
+                setState({
+                    ...state,
+                    isLoading: false
+                });
+                return throwError(new Error(err.message));
+            })
+        );
+    }
+
+    @Action(SearchMovieList)
+    searchMovieList({ getState, setState }: StateContext<MovieListStateModel>, { payload }: any) {
+        const state = getState();
+        return this.movieListService.search(payload).pipe(
             tap((response: MovieListResponseModel) => {
                 setState({
                     ...state,

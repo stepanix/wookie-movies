@@ -4,7 +4,7 @@ import { MovieListModel } from "../models/movie-list.model";
 
 
 @Injectable()
-export class MovieListListFacade {
+export class MovieListFacade {
 
     constructor() { };
 

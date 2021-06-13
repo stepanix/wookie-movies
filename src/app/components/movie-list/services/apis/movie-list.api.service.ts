@@ -13,4 +13,9 @@ export class MovieListApiService {
         const endPoint = environment.baseUrl + "movies";
         return this.httpClient.get<MovieListResponseModel>(endPoint);
     }
+
+    search(queryString: string): Observable<MovieListResponseModel> {
+        const endPoint = environment.baseUrl + `movies?q=${queryString}`;
+        return this.httpClient.get<MovieListResponseModel>(endPoint);
+    }
 }

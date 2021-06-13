@@ -1,13 +1,48 @@
-<div>
-    <div class="p-grid">
-        <div class="p-col">
-            <div class="box">4</div>
+<div class="container-fluid">
+    <div class="row page-header">
+        <div class="col-6">
+            <h4>Wookie Movies</h4>
         </div>
-        <div class="p-col">
-            <div class="box">4</div>
-        </div>
-        <div class="p-col">
-            <div class="box">4</div>
+        <div class="input-group col-6">
+            <form [formGroup]="searchMovieForm" style="width:100%">
+                <span class="input-group">
+                    <button (click)="searchMovie()" class="btn btn-outline-secondary border-right-0 border"
+                        type="button">
+                        <fa-icon [icon]="faSearch"></fa-icon>
+                    </button>
+                    <input class="form-control border" type="search" formControlName="txtSearchInput"
+                        (keyup.enter)="searchMovie()" placeholder="search">
+                </span>
+            </form>
         </div>
     </div>
+
+    <hr>
+
+    <div *ngIf="!(isLoading$ | async) && groupedMovieList">
+
+        <div *ngFor="let item of groupedMovieList">
+            <div class="genre">
+                {{item.genre}}
+            </div>
+
+            <div class="row">
+                <div *ngFor="let movie of item.movies" class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <a href="#" class="card box">
+                        <img class="card-img-top" src="{{movie.backdrop}}" alt="{{movie.title}}">
+                        <div class="card-body">
+                            <h5 class="card-title title-ext">{{movie.title}}</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div *ngIf="(isLoading$ | async)" class="spinner-container">
+        <app-loading-indicator> </app-loading-indicator>
+    </div>
+
 </div>
