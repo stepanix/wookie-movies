@@ -13,8 +13,12 @@ exports.config = {
     './src/**/*.e2e-spec.ts'
   ],
   capabilities: {
-    browserName: 'chrome'
-  },
+    'browserName': 'chrome',
+    chromeOptions: {
+    binary: process.env.CHROME_BIN,
+    args: ['--headless', '--no-sandbox']
+    }
+ },
   directConnect: true,
   SELENIUM_PROMISE_MANAGER: false,
   baseUrl: 'http://localhost:4200/',
@@ -28,6 +32,7 @@ exports.config = {
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.json')
     });
+    // @ts-ignore
     jasmine.getEnv().addReporter(new SpecReporter({
       spec: {
         displayStacktrace: StacktraceOption.PRETTY
