@@ -49,7 +49,7 @@ fdescribe('movie list state', () => {
     }));
 
     it('should cache returned error in movielist store when GetMovieList is dispatched', waitForAsync(() => {
-        spyOn(service, 'get').and.returnValue(throwError({status: 500, message: 'error'}));
+        spyOn(service, 'get').and.returnValue(throwError({ status: 500, message: 'error' }));
         store.dispatch(new GetMovieList());
 
         store.selectOnce(MovieListState).subscribe((data: MovieListStateModel) => {
@@ -58,7 +58,7 @@ fdescribe('movie list state', () => {
     }));
 
     it('should cache returned error in movielist store when SearchMovieList is dispatched', waitForAsync(() => {
-        spyOn(service, 'search').and.returnValue(throwError({status: 500, message: 'error'}));
+        spyOn(service, 'search').and.returnValue(throwError({ status: 500, message: 'error' }));
         store.dispatch(new SearchMovieList("test"));
 
         store.selectOnce(MovieListState).subscribe((data: MovieListStateModel) => {
