@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { MovieListFacade } from './facades/movie-list.facade';
@@ -7,13 +7,15 @@ import { GetMovieList, SearchMovieList } from './store/actions/movie-list.action
 import { MovieListState } from './store/states/movie-list.state';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.scss']
 })
-export class MovieListComponent implements OnInit {
+export class MovieListComponent implements OnInit, OnDestroy {
 
   faSearch = faSearch;
   searchMovieForm: FormGroup;
@@ -29,17 +31,25 @@ export class MovieListComponent implements OnInit {
 
   groupedMovieList: Array<MovieListModel> = [];
 
-  constructor(private fb: FormBuilder, private store: Store, private movieListFacade: MovieListFacade) { 
+  subscription: Subscription = new Subscription();
+
+  constructor(private fb: FormBuilder, private store: Store, private movieListFacade: MovieListFacade) {
     this.searchMovieForm = this.fb.group({
       txtSearchInput: ['', Validators.required]
     });
   }
 
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
   ngOnInit(): void {
     this.store.dispatch(new GetMovieList);
-    this.groupedMovieList$?.subscribe((res: MovieListModel[]) => {
+    const groupMovieListSubscription = this.groupedMovieList$?.subscribe((res: MovieListModel[]) => {
       this.groupedMovieList = res;
     });
+    this.subscription.add(groupMovieListSubscription);
   }
 
   searchMovie() {

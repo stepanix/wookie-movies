@@ -9,16 +9,19 @@ import { MovieListComponent } from "./movie-list.component";
 import { MovieListApiService } from "./services/apis/movie-list.api.service";
 import { MovieListState } from "./store/states/movie-list.state";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CommonModule } from "@angular/common";
+import { MovieListRoutingModule } from "./movie-list-routing.module";
 
 @NgModule({
     declarations: [
         MovieListComponent
     ],
     imports: [
-        BrowserModule,
+        CommonModule,
         ReactiveFormsModule,
         SharedModule,
         FontAwesomeModule,
+        MovieListRoutingModule,
         NgxsModule.forFeature([MovieListState])
     ],
     providers: [MovieListApiService, MovieListFacade]

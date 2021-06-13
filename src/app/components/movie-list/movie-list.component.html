@@ -28,7 +28,7 @@
 
             <div class="row">
                 <div *ngFor="let movie of item.movies" class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <a href="#" class="card box">
+                    <a [routerLink]="['/movie-detail',movie.slug]" class="card box">
                         <img class="card-img-top" src="{{movie.backdrop}}" alt="{{movie.title}}">
                         <div class="card-body">
                             <h5 class="card-title title-ext">{{movie.title}}</h5>
