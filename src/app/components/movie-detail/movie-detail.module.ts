@@ -1,10 +1,12 @@
+import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
-import { BrowserModule } from "@angular/platform-browser";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { SharedModule } from "src/app/shared/shared.module";
+import { MovieDetailFacade } from "./facades/movie-detail.facade";
 import { MovieDetailRoutingModule } from "./movie-detail-routing.module";
 import { MovieDetailComponent } from "./movie-detail.component";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -12,11 +14,13 @@ import { MovieDetailComponent } from "./movie-detail.component";
         MovieDetailComponent
     ],
     imports: [
+        CommonModule,
         ReactiveFormsModule,
         SharedModule,
         FontAwesomeModule,
-        MovieDetailRoutingModule
+        MovieDetailRoutingModule,
+        NgbModule
     ],
-    providers: []
+    providers: [MovieDetailFacade]
 })
 export class MovieDetailModule { }

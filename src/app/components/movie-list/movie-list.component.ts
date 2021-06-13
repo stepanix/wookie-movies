@@ -7,6 +7,7 @@ import { GetMovieList, SearchMovieList } from './store/actions/movie-list.action
 import { MovieListState } from './store/states/movie-list.state';
 
 import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -29,18 +30,26 @@ export class MovieListComponent implements OnInit, OnDestroy {
   groupedMovieList: Array<MovieListModel> = [];
 
   subscription: Subscription = new Subscription();
+  slug: string = '';
 
-  constructor(private store: Store, private movieListFacade: MovieListFacade) {
-
+  constructor(private store: Store, private route: ActivatedRoute,) {
+    this.slug = this.route.snapshot.params.slug;
   }
-
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
   ngOnInit(): void {
-    this.store.dispatch(new GetMovieList);
+
+    this.groupedMovieList = [];
+
+    if (!this.slug) {
+      this.store.dispatch(new GetMovieList);
+    } else {
+      this.store.dispatch(new SearchMovieList(this.slug));
+    }
+
     const groupMovieListSubscription = this.groupedMovieList$?.subscribe((res: MovieListModel[]) => {
       this.groupedMovieList = res;
     });

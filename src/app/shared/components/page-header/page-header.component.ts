@@ -26,7 +26,7 @@ export class PageHeaderComponent {
     searchMovie() {
         const searchValue = this.searchMovieForm.controls['txtSearchInput'].value
         this.store.dispatch(new SearchMovieList(searchValue));
-        this.store.dispatch(new Navigate(['/home']));
+        this.store.dispatch(new Navigate(["/home", searchValue]));
     }
 
 }

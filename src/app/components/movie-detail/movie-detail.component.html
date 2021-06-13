@@ -1,3 +1,28 @@
 <div class="container-fluid">
     <app-page-header></app-page-header>
+
+    <div style="margin-bottom: 20px"> 
+        <a [routerLink]="['/home']"> Back to Movies</a>
+    </div>
+
+    <div class="row">
+        <div class="col-5 align-poster">
+            <img class="img-thumbnail" src="{{movieModel?.poster}}" alt="{{movieModel?.title}}">
+        </div>
+        <div class="card-box col-5">
+            <div class="title-ext movie-details">{{movieModel?.title}}</div>
+            <div class="movie-details">{{movieModel?.released_on | date }} | {{ movieModel?.length}} | {{ movieModel?.director}}
+            </div>
+            <div class="movie-details">
+                {{movieModel?.cast}}
+            </div>
+            <div class="movie-details">
+                {{movieModel?.overview}}
+            </div>
+        </div>
+        <div class="card-box col-2">
+            <ngb-rating [rate]="movieModel.imdb_rating" [readonly]="isReadOnly"></ngb-rating>
+        </div>
+    </div>
+
 </div>

@@ -13,6 +13,12 @@ body { padding-top: 20px; margin: 0; font-family: Roboto, "Helvetica Neue", sans
     margin: 12px;
 }
 
+.title-ext {
+    font-weight: 450;
+    font-size: medium;
+}
+   
+
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
