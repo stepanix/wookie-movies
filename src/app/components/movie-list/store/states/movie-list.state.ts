@@ -72,6 +72,7 @@ export class MovieListState {
             catchError((err: HttpErrorResponse) => {
                 setState({
                     ...state,
+                    error: err.message,
                     isLoading: false
                 });
                 return throwError(new Error(err.message));
@@ -94,6 +95,7 @@ export class MovieListState {
             catchError((err: HttpErrorResponse) => {
                 setState({
                     ...state,
+                    error: err.message,
                     isLoading: false
                 });
                 return throwError(new Error(err.message));
