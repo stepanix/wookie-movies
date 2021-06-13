@@ -9,7 +9,7 @@ import { jsonResponseStub } from '../../stubs/json-response.stub';
 import { GetMovieList, SearchMovieList } from '../actions/movie-list.actions';
 import { MovieListState, MovieListStateModel } from './movie-list.state';
 
-fdescribe('movie list state', () => {
+describe('movie list state', () => {
 
     let store: Store;
     let service: MovieListApiService;
@@ -18,8 +18,7 @@ fdescribe('movie list state', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule, NgxsModule.forRoot([MovieListState])],
-            providers: [MovieListApiService
-                , MovieListFacade]
+            providers: [MovieListApiService, MovieListFacade]
         });
 
         store = getTestBed().inject(Store);

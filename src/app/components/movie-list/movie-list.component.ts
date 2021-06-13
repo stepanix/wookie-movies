@@ -32,7 +32,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
   slug: string = '';
 
-  constructor(private store: Store, private route: ActivatedRoute,) {
+  constructor(public store: Store, private route: ActivatedRoute,) {
     this.slug = this.route.snapshot.params.slug;
   }
 

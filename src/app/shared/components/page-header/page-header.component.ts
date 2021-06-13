@@ -13,11 +13,10 @@ import { Navigate } from '@ngxs/router-plugin';
 })
 export class PageHeaderComponent {
 
-
     faSearch = faSearch;
     searchMovieForm: FormGroup;
 
-    constructor(private fb: FormBuilder, private store: Store) {
+    constructor(private fb: FormBuilder, public store: Store) {
         this.searchMovieForm = this.fb.group({
             txtSearchInput: ['', Validators.required]
         });
