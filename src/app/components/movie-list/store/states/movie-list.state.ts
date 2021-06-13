@@ -29,6 +29,7 @@ export interface MovieListStateModel {
     }
 })
 
+// Movie List state
 @Injectable()
 export class MovieListState {
 
