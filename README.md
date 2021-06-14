@@ -28,7 +28,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 ## Production Artifact
 
-Open the public folder.
+Open the public folder to view production artifact.
 
 ## Further help
 
