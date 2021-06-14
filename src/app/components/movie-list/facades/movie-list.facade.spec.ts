@@ -19,4 +19,10 @@ describe('MovieListFacade', () => {
         expect(result[0].genre).toBeDefined();
     });
 
+    it('should call transform and return empty array if there are no movies', () => {
+        const result = facade.transform([]);
+        expect(result.length).toEqual(0);
+    });
+
+
 });
