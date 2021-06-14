@@ -24,7 +24,7 @@ export class MovieDetailComponent implements OnInit {
     rate: number = 1;
     isReadOnly: boolean = true;
 
-    constructor(private store: Store, private route: ActivatedRoute, private movieDetailFacade: MovieDetailFacade) {
+    constructor(public store: Store, private route: ActivatedRoute, private movieDetailFacade: MovieDetailFacade) {
         this.slug = this.route.snapshot.params.slug;
     }
 
